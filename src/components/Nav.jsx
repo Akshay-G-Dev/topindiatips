@@ -1,19 +1,46 @@
 import React, { useState, useEffect } from "react";
 import "../index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-
+import SubMenu from "./SubMenu";
 const Nav = () => {
   // State to manage the navbar's visibility
   const [nav, setNav] = useState(false);
-  const [NavItems, setNavItems] = useState([
-    { title: "Home", path: "/" },
-    { title: "Data Science", path: "/about" },
-    { title: "Blog", path: "/contact" },
-    { title: "Contact", path: "/contact" },
-    { title: "Write For Us", path: "/contact"},
-    { title: "About Us", path: "/contact"}
-  ]);
+  const pages = [
+    {
+      title: "Products",
+      path: "/products",
+      sub: [
+        { title: "Sub1", path: "/sub1" },
+        { title: "sub2", path: "/sub2" },
+      ],
+    },
+    {
+      title: "Pricing",
+      path: "/pricing",
+      sub: [
+        {
+          title: "Sub3",
+          path: "/sub1",
+          sub: [
+            {
+              title: "Sub31",
+              path: "/sub1",
+              sub: [
+                { title: "Sub321", path: "/sub1" },
+                { title: "sub421", path: "/sub2" },
+              ],
+            },
+            { title: "sub41", path: "/sub2" },
+          ],
+        },
+        { title: "sub4", path: "/sub2" },
+      ],
+    },
+    { title: "Blog", path: "/blog" },
+  ];
+  const [NavItems, setNavItems] = useState(pages);
 
   // useEffect(() => {
   //   fetch("https://api.example.com/navItems")
@@ -25,46 +52,75 @@ const Nav = () => {
     setNav(!nav);
   };
 
+  const [openSubMenus, setOpenSubMenus] = useState({});
+
+  const toggleSubMenu = (key) => {
+    const updatedOpenSubMenus = {};
+    Object.keys(openSubMenus).forEach((subMenuKey) => {
+      updatedOpenSubMenus[subMenuKey] = false;
+    });
+    setOpenSubMenus((prevOpenSubMenus) => ({
+      ...updatedOpenSubMenus,
+      [key]: !prevOpenSubMenus[key],
+    }));
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const navElement = document.getElementById("nav");
+      if (navElement && !navElement.contains(event.target)) {
+        setOpenSubMenus({});
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <nav className="bg-gray-600 flex  absolute top-0 w-[100vw] text-blue-50 p-5">
-      <div className="container mx-auto">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center">
-            <img src="./vite.svg" alt="TopIndiaTips Logo" />
-            <div className="text-white font-bold text-xl mx-2">
-              Top India Tips
-            </div>
-          </div>
-          <ul className="hidden md:flex space-x-4">
-            {NavItems.map((item, index) => (
-              <li key={index}>
-                <a className="text-white hover:text-gray-300"> {item.title} </a>
-              </li>
-            ))}
-          </ul>
-          {/* Mobile Navigation Icon */}
-          <div onClick={handleNav} className="block md:hidden">
-            {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
-          </div>
-
-          {/* Mobile Navigation Menu */}
-          <ul
-            className={
-              nav
-                ? "absolute md:hidden left-0 top-[100%] w-[100vw] ease-in-out duration-500 -z-10"
-                : "ease-in-out w-[100vw] duration-500 absolute top-[-1000%] left-0"
-            }>
-            {/* Mobile Logo */}
-
-            {/* Mobile Navigation Items */}
-            {NavItems.map((item, index) => (
-              <li
-                key={index}
-                className="py-2 border-b border-gray-300  hover:bg-gray-200 hover:font-bold  duration-300 text-black cursor-pointer border-gray-600 text-center">
+    <nav
+      id="nav"
+      className="flex justify-between content-center shadow-lg w-100 rounded shadow-blue-200 p-4">
+      <div>
+        <img src="test.png" alt="" className="inline h-full w-auto" />
+        <div className="inline">Company name</div>
+      </div>
+      <div>
+        <div className="">
+          {NavItems.map((item) => (
+            <div
+              className=" inline-block"
+              key={item.title}
+              onMouseEnter={() => toggleSubMenu(item.title)}
+              onMouseLeave={() => toggleSubMenu(item.title)}>
+              <a href={item.path} key={item.title} className="text-black p-1.5">
                 {item.title}
-              </li>
-            ))}
-          </ul>
+                {item.sub && item.sub.length > 0 ? (
+                  <FontAwesomeIcon
+                    icon={faAngleDown}
+                    className="ml-1"
+                    onClick={() => toggleSubMenu(item.title)}
+                  />
+                ) : null}
+              </a>
+
+              {item.sub && item.sub.length > 0 ? (
+                <SubMenu
+                  item={item.sub}
+                  key={item.title}
+                  className={openSubMenus[item.title] ? "block" : "hidden"}
+                />
+              ) : null}
+            </div>
+          ))}
+        </div>
+        <div className="hidden">
+          <button onClick={handleNav} className="text-black">
+            {nav ? <AiOutlineClose /> : <AiOutlineMenu />}
+          </button>
         </div>
       </div>
     </nav>

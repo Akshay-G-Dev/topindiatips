@@ -23,7 +23,14 @@ const pages = [
       { title: "sub2", path: "/sub2" },
     ],
   },
-  { title: "Pricing", path: "/pricing" },
+  {
+    title: "Pricing",
+    path: "/pricing",
+    sub: [
+      { title: "Sub3", path: "/sub1" },
+      { title: "sub4", path: "/sub2" },
+    ],
+  },
   { title: "Blog", path: "/blog" },
 ];
 const settings = [
@@ -36,13 +43,18 @@ const settings = [
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const [anchorSets, setAnchorSets] = React.useState({});
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+  
+  const handleClick = (event, title) => {
+    setAnchorEl({ ...anchorEl, [title]: event.currentTarget });
+  };
+
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -51,6 +63,11 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleClose = (title) => {
+    setAnchorEl({ ...anchorEl, [title]: null });
+  };
+  
 
   return (
     <AppBar position="static">
@@ -143,37 +160,42 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page.title}
-                onClick={() => {
-                  handleCloseNavMenu();
-                  
-                }}
                 sx={{
                   my: 2,
                   color: "white",
                   display: "block",
                   width: { xs: "100vw", md: "auto" },
                 }}
-                open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}>
-                {page.title} {page.sub && <ArrowDropDownIcon onClick={handleOpenUserMenu} />}
+                <span onClick={(event) => handleClick(event, page.title)}>
+                  {page.title}{" "}
+                </span>
+                {page.sub && (
+                  <ArrowDropDownIcon
+                    onClick={(event) => handleClick(event, page.title)}
+                  />
+                )}
                 {page.sub && (
                   <Menu
                     sx={{ mt: "45px" }}
-                    id="menu-appbar"
-                    anchorEl={anchorElUser}
+                    id={`menu-appbar-{page.title}`}
+                    anchorEl={anchorSets[page.title]}
                     anchorOrigin={{
                       vertical: "top",
                       horizontal: "right",
                     }}
+                    onClose={() => handleClose(page.title)}
                     keepMounted
                     transformOrigin={{
                       vertical: "top",
                       horizontal: "right",
                     }}
-                    open={Boolean(anchorElUser)}
-                    onClose={handleCloseUserMenu}>
+                    open={Boolean(anchorSets[page.title])}
+                    >
                     {page.sub.map((sub) => (
-                      <MenuItem key={sub.title} onClick={handleCloseNavMenu}>
+                      <MenuItem
+                        key={sub.title}
+                        onClick={() => handleClose(page.title)}>
                         <Typography textAlign="center">{sub.title}</Typography>
                       </MenuItem>
                     ))}
