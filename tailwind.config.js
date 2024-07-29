@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 const plugin = require("tailwindcss/plugin");
 export default {
-  content: ["./src/**/*.{html,jsx,ts,jsx,tsx }"],
+  content: [
+    "./src/**/*.{html,jsx,ts,jsx,tsx }",
+    "./node_modules/flowbite/**/*.js",
+  ],
   theme: {
     colors: {
       blue: "#1fb6ff",

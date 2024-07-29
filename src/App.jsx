@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css';
 import "./index.css";
-import ResponsiveAppBar from './components/ResponsiveAppBar';
-import Nav from './components/Nav';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import NewNav from './components/NewNav';
+import Carousel from './components/Carousel'; 
+import PopularCategories from './components/PopularCategories';
 
 
 function App() {
@@ -12,8 +13,10 @@ function App() {
 
   return (
     <>
-      <Nav />
-      Akshay
+      
+       <NewNav />
+        <Carousel />
+        <PopularCategories />
     </>
   )
 }
