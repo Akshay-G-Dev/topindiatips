@@ -98,7 +98,7 @@ const NewNav = () => {
               </button>
               <div
                 id="dropdownNavbar"
-                className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                className="z-40 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                 <ul
                   className="py-2 text-sm text-gray-700 dark:text-gray-200"
                   aria-labelledby="dropdownLargeButton">
@@ -134,7 +134,7 @@ const NewNav = () => {
                     </button>
                     <div
                       id="doubleDropdown"
-                      className="z-10 hidden  divide-y divide-gray-100 rounded-lg shadow w-44 ">
+                      className="bg-white hidden  divide-y divide-gray-100 rounded-lg shadow w-44 ">
                       <ul
                         className="py-2 text-sm text-gray-700 dark:text-gray-200"
                         aria-labelledby="doubleDropdownButton">
