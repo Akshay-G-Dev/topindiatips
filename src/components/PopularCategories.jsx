@@ -16,7 +16,7 @@ const PopularCategories = () => {
         </svg> */}
       </span>
       <div className="container mt-10 backdrop-blur-sm">
-        <div className="flex justify-center  flex-wrap  *:w-[5rem] *:md:w-[15%] gap-x-3 md:gap-x-7 gap-y-2">
+        <div className="flex justify-center  flex-wrap  *:w-[5rem] *:md:w-[15%] gap-x-3 md:gap-x-7 gap-y-2 *:cursor-pointer">
           <div className="flex flex-col justify-center text-center group relative">
             <img
               className="rounded-full group-hover:opacity-40 z-10"

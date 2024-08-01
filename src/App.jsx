@@ -10,6 +10,7 @@ import Map from "react-map-gl";
 import India from "@react-map/india";
 import IndiaMap from './components/IndiaMap';
 import StateInfo from './components/StateInfo';
+import TravelTips from './components/TravelTips';
 
 
 function App() {
@@ -28,34 +29,25 @@ function App() {
       <Carousel />
       <PopularCategories />
 
-      {/* <Map
-        mapLib={import("mapbox-gl")}
-        initialViewState={{
-          longitude: -100,
-          latitude: 40,
-          zoom: 3.5,
-        }}
-        style={{ width: 600, height: 400 }}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
-      /> */}
-      {/* <IndiaMap /> */}
-      <div className='relative'>
+      <div className="relative">
         <StateInfo state={st} />
-      <span className="block mx-auto  text-center text-2xl font-bold custom-underline relative w-fit">
-        <p>Let's Explore India</p>
-      </span>
-      <div className="mx-auto max-w[100vw] overflow-scroll" >
-      <India
-        
-        onSelect={check}
-        hoverColor="orange"
-        type="select-single"
-        hints
-        hint
-      /></div>
+        <span className="block mx-auto  text-center text-2xl font-bold custom-underline relative w-fit">
+          <p>Let&apos;s Explore India</p>
+        </span>
+        <div className=" map-container mx-auto max-w[100vw] overflow-scroll cursor-pointer">
+          <India
+            onSelect={check}
+            hoverColor="orange"
+            type="select-single"
+            hints
+          />
+        </div>
       </div>
-      
-      
+
+      <span className="block mx-auto  text-center text-2xl font-bold custom-underline relative w-fit">
+        <p>Explore curated tips on </p>
+      </span>
+      <TravelTips />
     </>
   );
 }

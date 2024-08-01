@@ -12,7 +12,7 @@ const NewNav = () => {
             Top India Tips
           </span>
         </a>
-        
+
         <button
           data-collapse-toggle="navbar-multi-level"
           type="button"
@@ -75,10 +75,10 @@ const NewNav = () => {
               </a>
             </li>
             <li>
-              
               <button
                 id="dropdownNavbarLink"
                 data-dropdown-toggle="dropdownNavbar"
+                data-dropdown-trigger="hover"
                 className="flex items-center justify-between w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent">
                 Dropdown{" "}
                 <svg
@@ -192,9 +192,123 @@ const NewNav = () => {
               </a>
             </li>
             <li>
-              <a href="#" className="nav-links">
+              <button
+                id="mega-menu-dropdown-button"
+                className="nav-links flex items-center justify-between w-full py-2 px-3"
+                data-dropdown-toggle="mega-menu-dropdown"
+                data-dropdown-trigger="hover"
+                aria-hidden="true">
                 Pricing
-              </a>
+                <svg
+                  className="w-2.5 h-2.5 ms-2.5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6">
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="m1 1 4 4 4-4"
+                  />
+                </svg>
+              </button>
+              <div
+                id="mega-menu-dropdown"
+                className="absolute z-40  hidden  grid w-auto grid-cols-2 text-sm bg-white border border-gray-100 rounded-lg shadow-md dark:border-gray-700 md:grid-cols-3 dark:bg-gray-700">
+                <div className="p-4 pb-0 text-gray-900 md:pb-4 dark:text-white">
+                  <ul
+                    className="space-y-4"
+                    aria-labelledby="mega-menu-dropdown-button">
+                    <li>
+                      <a
+                        href="#"
+                        className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                        About Us
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                        Library
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                        Resources
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                        Pro Version
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div className="p-4 pb-0 text-gray-900 md:pb-4 dark:text-white">
+                  <ul className="space-y-4">
+                    <li>
+                      <a
+                        href="#"
+                        className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                        Blog
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                        Newsletter
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                        Playground
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                        License
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div className="p-4">
+                  <ul className="space-y-4">
+                    <li>
+                      <a
+                        href="#"
+                        className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                        Contact Us
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                        Support Center
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-500">
+                        Terms
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </li>
             <li>
               <a href="#" className="nav-links">
